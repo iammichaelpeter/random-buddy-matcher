@@ -1,13 +1,50 @@
 :host {
+    display: block;
+}
+
+.layout-container {
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
+    width: 100%;
+    gap: 16px;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+    }
+}
+
+.form-section,
+.employees-section {
+    width: 50%;
+
+    @media (max-width: 768px) {
+        width: 100%;
+    }
 }
 
 .form-fields {
     display: flex;
     flex-direction: column;
     padding-right: 64px;
+
+    @media (max-width: 768px) {
+        padding-right: 0;
+    }
+}
+
+.divider {
+    @media (max-width: 768px) {
+        margin: 16px 0;
+    }
+}
+
+.employees-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.employee-item {
+    padding: 8px;
 }
 
 mat-form-field {
@@ -32,8 +69,8 @@ button[type="submit"] {
     justify-content: center;
     width: 100%;
     height: 100%;
-}
 
-.user-content span {
-    text-align: center;
+    span {
+        text-align: center;
+    }
 }
