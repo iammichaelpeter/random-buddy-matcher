@@ -1,0 +1,41 @@
+<table mat-table [dataSource]="dataSource()" class="mat-elevation-z8"
+    style="border: solid 1px; border-color: var(--mat-sys-outline);">
+
+    <ng-container matColumnDef="couple">
+        <th mat-header-cell *matHeaderCellDef> Couple </th>
+        <td mat-cell *matCellDef="let couple"> {{couple.id}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeOneName">
+        <th mat-header-cell *matHeaderCellDef> Employee 1 Name </th>
+        <td mat-cell *matCellDef="let couple"> {{couple.employee.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeOneSection">
+        <th mat-header-cell *matHeaderCellDef> Employee 1 Section </th>
+        <td mat-cell *matCellDef="let couple"> {{couple.employee.section}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeTwoName">
+        <th mat-header-cell *matHeaderCellDef> Employee 2 Name </th>
+        <td mat-cell *matCellDef="let couple"> {{couple.partner.name}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="employeeTwoSection">
+        <th mat-header-cell *matHeaderCellDef> Employee 2 Section </th>
+        <td mat-cell *matCellDef="let couple"> {{couple.partner.section}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+@if (leftEmployee()) {
+    <div class="remaining-employee-card">
+        <p class="remaining-employee-title">Übrig gebliebener Mitarbeiter:</p>
+        <div class="remaining-employee-content">
+            <p>{{ leftEmployee()?.name }}</p>
+            <p>{{ leftEmployee()?.section }}</p>
+        </div>
+    </div>
+}

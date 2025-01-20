@@ -1,0 +1,63 @@
+<div style="display: flex; width: 100%;">
+    <form [formGroup]="employeeForm" (ngSubmit)="addEmployee()" style="width: 50%;">
+        <h2>Add Employee</h2>
+        <div class="form-container">
+            <div class="form-fields">
+                <mat-form-field>
+                    <mat-label>Employee Name</mat-label>
+                    <input matInput type="text" formControlName="name">
+                </mat-form-field>
+                <mat-form-field style="margin-top: 8px;">
+                    <mat-label>Employee Section</mat-label>
+                    <mat-select type="text" formControlName="section">
+                        <mat-option value="Support">Support</mat-option>
+                        <mat-option value="Developer">Developer</mat-option>
+                        <mat-option value="Marketing">Marketing</mat-option>
+                        <mat-option value="HR">HR</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+        </div>
+        <button type="submit" [disabled]="!employeeForm.valid" mat-flat-button>Add</button>
+    </form>
+    <hr>
+    <div style="width: 50%; margin-left: 16px;">
+        <h2>Added Employee</h2>
+        <div>
+            <div>
+                <div style="display: flex; flex-wrap: wrap;">
+                    @for (employee of addedEmployees(); track employee.id) {
+                    <div style="padding: 8px;">
+                        <button mat-stroked-button [matMenuTriggerFor]="employeeMenu" class="user-button">
+                            <div class="user-content">
+                                <mat-icon>account_circle</mat-icon>
+                                <span>{{ employee.name }}</span>
+                            </div>
+                        </button>
+                        <mat-menu #employeeMenu="matMenu">
+                            <div style="padding-left: 16px;">
+                                <p>{{employee.name}}</p>
+                                <p>{{employee.section}}</p>
+                            </div>
+                            <div style="display: flex; justify-content: flex-end;">
+                                <button
+                                    mat-icon-button
+                                    (click)="deleteEmployee(employee.id)"
+                                    matTooltip="Delete this Employee"
+                                    #tooltip="matTooltip"
+                                    matTooltipPosition="below"
+                                    matTooltipHideDelay="100000"
+                                ><mat-icon style="color: var(--mat-sys-error);">cancel</mat-icon>
+                                </button>
+                            </div>
+                        </mat-menu>
+                    </div>
+                    }
+                </div>
+            </div>
+
+            <button (click)="getCouples()" type="submit" mat-flat-button [disabled]="addedEmployees().length === 0"
+                style="margin-top: 16px;">Submit</button>
+        </div>
+    </div>
+</div>

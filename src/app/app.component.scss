@@ -1,13 +1,37 @@
 @use '@angular/material' as mat;
 
-:root {
-  @include mat.toolbar-overrides((
-    container-background-color: orange,
-    container-text-color: red,
-  ));
-}
-
 .example-spacer {
     flex: 1 1 auto;
 }
+
+.github-link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: inherit;
+  padding: 8px 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  margin-left: auto; /* Schiebt den Link nach rechts */
+}
+
+.github-link:hover {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.github-icon {
+  width: 24px;
+  height: 24px;
+}
+
+/* Für mobile Ansicht */
+@media (max-width: 600px) {
+  .github-link span {
+    display: none;
+  }
   
+  .github-link {
+    padding: 8px;
+  }
+}
